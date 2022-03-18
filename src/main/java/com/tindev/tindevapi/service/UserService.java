@@ -26,9 +26,9 @@ public class UserService {
     private ObjectMapper objectMapper;
 
     public UserDTO createUser(UserCreateDTO userToBeCreated) throws Exception {
+        log.info("Chamou criar user");
         userRepository.getAddressById(userToBeCreated.getAddressId());
         userRepository.getPersoInfoById(userToBeCreated.getPersoInfoId());
-        log.info("Chamou criar user");
         User userToCreate = objectMapper.convertValue(userToBeCreated, User.class);
         return objectMapper.convertValue(userRepository.create(userToCreate), UserDTO.class);
     }

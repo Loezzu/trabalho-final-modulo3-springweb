@@ -38,7 +38,7 @@ public class PersoInfoService {
         return objectMapper.convertValue(persoInfoCreated, PersoInfoDTO.class);
     }
 
-    public List<PersoInfoDTO> list() throws Exception {
+    public List<PersoInfoDTO> list(){
         log.info("calling the List method");
         return persoInfoRepository.list()
                 .stream()

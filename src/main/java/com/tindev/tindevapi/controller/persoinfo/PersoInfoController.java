@@ -1,9 +1,8 @@
-package com.tindev.tindevapi.controller;
+package com.tindev.tindevapi.controller.persoinfo;
 
 
 import com.tindev.tindevapi.dto.persoInfo.PersoInfoCreateDTO;
 import com.tindev.tindevapi.dto.persoInfo.PersoInfoDTO;
-import com.tindev.tindevapi.entities.PersoInfo;
 import com.tindev.tindevapi.service.PersoInfoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -17,7 +16,7 @@ import java.util.List;
 @Validated
 @RestController
 @RequestMapping("/persoinfo")
-public class PersoInfoController {
+public class PersoInfoController implements PersoInfoAPI {
 
 
     @Autowired
@@ -25,7 +24,7 @@ public class PersoInfoController {
 
 
     @GetMapping
-    public ResponseEntity<List<PersoInfoDTO>> list() throws Exception {
+    public ResponseEntity<List<PersoInfoDTO>> list(){
         return ResponseEntity.ok(persoInfoService.list());
     }
 
@@ -35,7 +34,7 @@ public class PersoInfoController {
     }
 
     @PutMapping("/{persoInfoId}")
-    public ResponseEntity<PersoInfoDTO> update(@Valid @PathVariable("persoInfoId") Integer id, @RequestBody PersoInfoCreateDTO persoInfoUpdate) throws Exception {
+    public ResponseEntity<PersoInfoDTO> update(@PathVariable("persoInfoId") Integer id, @Valid @RequestBody PersoInfoCreateDTO persoInfoUpdate) throws Exception {
         return ResponseEntity.ok(persoInfoService.update(id, persoInfoUpdate));
     }
 
