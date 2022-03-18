@@ -29,16 +29,13 @@ public class PersoInfoService {
 
        PersoInfo persoInfo = objectMapper.convertValue(persoInfoCreate, PersoInfo.class);
 
-        if (persoInfoRepository.findByEmail(persoInfo.getEmail())) {
+        if (persoInfoRepository.getByEmail(persoInfo.getEmail())) {
             throw new RegraDeNegocioException("Email já cadastrado");
         }
 
        PersoInfo persoInfoCreated = persoInfoRepository.create(persoInfo);
 
-       PersoInfoDTO persoInfoDTO = objectMapper.convertValue(persoInfoCreated, PersoInfoDTO.class);
-
-
-       return persoInfoDTO;
+        return objectMapper.convertValue(persoInfoCreated, PersoInfoDTO.class);
     }
 
     public List<PersoInfoDTO> list() throws Exception {

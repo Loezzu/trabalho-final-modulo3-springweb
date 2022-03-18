@@ -50,7 +50,7 @@ public class PersoInfoRepository {
         persoInfoList.remove(persoInfoDeleted);
    }
 
-    public boolean findByEmail(String email) {
+    public boolean getByEmail(String email) {
         return persoInfoList.stream()
                 .anyMatch(persoInfo -> persoInfo.getEmail().equals(email));
     }

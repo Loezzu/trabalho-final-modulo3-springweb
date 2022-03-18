@@ -24,8 +24,8 @@ public class AddressController {
         return ResponseEntity.ok(addressService.listAddress());
     }
 
-    @GetMapping("/{idAddress}")
-    public ResponseEntity<AddressDTO> getByIdAddress(@PathVariable("idAddress") Integer id) throws Exception {
+    @GetMapping("/{addressId}")
+    public ResponseEntity<AddressDTO> getByIdAddress(@PathVariable("addressId") Integer id) throws Exception {
         return ResponseEntity.ok(addressService.getAddressById(id));
     }
 
@@ -34,14 +34,14 @@ public class AddressController {
         return ResponseEntity.ok(addressService.createAddress(addressCreateDTO));
     }
 
-    @PutMapping("/{idAddress}")
-    public ResponseEntity<AddressDTO> updatedAddress(@PathVariable("idAddress") Integer id,
+    @PutMapping("/{addressId}")
+    public ResponseEntity<AddressDTO> updatedAddress(@PathVariable("addressId") Integer id,
                                                     @Valid @RequestBody AddressCreateDTO addressCreateDTO) throws Exception {
         return ResponseEntity.ok(addressService.updateAddress(id, addressCreateDTO));
     }
 
-    @DeleteMapping("/{idAddress}")
-    public ResponseEntity<String> deleteAddress(@PathVariable("idAddress") Integer id){
+    @DeleteMapping("/{addressId}")
+    public ResponseEntity<String> deleteAddress(@PathVariable("addressId") Integer id){
         return ResponseEntity.ok("Address Deleted!");
     }
 
