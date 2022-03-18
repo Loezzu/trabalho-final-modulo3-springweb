@@ -7,7 +7,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 @Data
-public class DadosPessoais {
+public class PersoInfo {
 
     private Integer idPersoInfo;
     private String realName;
