@@ -65,6 +65,8 @@ public class UserRepository {
                 .filter(user -> user.getUserId().equals(id))
                 .findFirst()
                 .orElseThrow(() -> new RegraDeNegocioException("User not found"));
+        addressService.deleteAddress(userToDelete.getAddressId());
+        persoInfoService.delete(userToDelete.getPersoInfoId());
         listUsers.remove(userToDelete);
     }
 
@@ -88,4 +90,24 @@ public class UserRepository {
                 .findFirst()
                 .orElseThrow(() -> new RegraDeNegocioException("Personal information not found"));
     }
+
+    public List<User> listAvailable(Integer id) throws Exception {
+        try {
+            User user = getUserById(id);
+            List<User> availableUsers = new ArrayList<>();
+            for (int i = 0; i < listUsers.size(); i++) {
+                User currentUser = listUsers.get(i);
+                if(currentUser.hashCode() == user.hashCode()){
+                    continue;
+                }
+                if(user.getPref().isCompatible(currentUser.getGender()) && currentUser.getPref().isCompatible(user.getGender())) {
+                    availableUsers.add(currentUser);
+                }
+            }
+            return availableUsers;
+        }catch (Exception e){
+            throw new RegraDeNegocioException("User not found");
+        }
+    }
+
 }

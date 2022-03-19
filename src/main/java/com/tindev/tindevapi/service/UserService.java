@@ -57,4 +57,11 @@ public class UserService {
         log.info("Calling the get user by id method");
         return objectMapper.convertValue(userRepository.getUserById(id), UserDTO.class);
     }
+
+    public List<UserDTO> listAvailable(Integer id) throws Exception {
+        log.info("Calling the list available method");
+        return userRepository.listAvailable(id).stream()
+                .map(user -> objectMapper.convertValue(user, UserDTO.class))
+                .collect(Collectors.toList());
+    }
 }

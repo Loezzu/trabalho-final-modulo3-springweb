@@ -50,4 +50,9 @@ public class UserController implements UserAPI{
         return ResponseEntity.ok("User deleted!");
     }
 
+    @GetMapping("/available/{userId}")
+    public ResponseEntity<List<UserDTO>> listAvailable(@PathVariable("userId") Integer id) throws Exception {
+        return ResponseEntity.ok(userService.listAvailable(id));
+    }
+
 }
