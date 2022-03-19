@@ -1,8 +1,10 @@
 package com.tindev.tindevapi.controller.persoinfo;
 
 
+import com.tindev.tindevapi.dto.address.AddressDTO;
 import com.tindev.tindevapi.dto.persoInfo.PersoInfoCreateDTO;
 import com.tindev.tindevapi.dto.persoInfo.PersoInfoDTO;
+import com.tindev.tindevapi.exceptions.RegraDeNegocioException;
 import com.tindev.tindevapi.service.PersoInfoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -28,6 +30,11 @@ public class PersoInfoController implements PersoInfoAPI {
         return ResponseEntity.ok(persoInfoService.list());
     }
 
+    @GetMapping("/{persoInfoId}")
+    public ResponseEntity<PersoInfoDTO> getByPersoInfoId(@PathVariable("persoInfoId") Integer id) throws RegraDeNegocioException {
+        return ResponseEntity.ok(persoInfoService.getPersoInfoById(id));
+    }
+
     @PostMapping
     public ResponseEntity<PersoInfoDTO> create(@Valid @RequestBody PersoInfoCreateDTO persoInfoDTO) throws Exception {
         return ResponseEntity.ok(persoInfoService.create(persoInfoDTO));
@@ -43,5 +50,4 @@ public class PersoInfoController implements PersoInfoAPI {
         persoInfoService.delete(id);
         return new ResponseEntity<>("PersoInfo deleted", HttpStatus.ACCEPTED);
     }
-
 }

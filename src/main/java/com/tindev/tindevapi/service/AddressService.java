@@ -24,31 +24,31 @@ public class AddressService {
     private ObjectMapper objectMapper;
 
     public AddressDTO createAddress(AddressCreateDTO addressToBeCreated){
-        log.info("Chamou criar");
+        log.info("Calling the Create address method");
         Address addressToCreate = objectMapper.convertValue(addressToBeCreated, Address.class);
         return objectMapper.convertValue(addressRepository.create(addressToCreate), AddressDTO.class);
     }
 
     public List<AddressDTO> listAddress(){
-        log.info("Chamou listar address");
+        log.info("Calling the List address method");
         return addressRepository.list().stream()
                 .map(address -> objectMapper.convertValue(address, AddressDTO.class))
                 .collect(Collectors.toList());
     }
 
     public AddressDTO updateAddress(Integer id, AddressCreateDTO addressUpdated) throws RegraDeNegocioException {
-        log.info("Chamou atualizar address");
+        log.info("Calling the Update address method");
         Address addressToUpdate = objectMapper.convertValue(addressUpdated, Address.class);
         return objectMapper.convertValue(addressRepository.update(id, addressToUpdate), AddressDTO.class);
     }
 
     public void deleteAddress(Integer id) throws RegraDeNegocioException {
-        log.info("Chamou deletar address");
+        log.info("Calling the Delete address method");
         addressRepository.delete(id);
     }
 
     public AddressDTO getAddressById(Integer id) throws RegraDeNegocioException {
-        log.info("Chamou pegar address por id");
+        log.info("Calling the get address by ID method");
         return objectMapper.convertValue(addressRepository.getAddressById(id), AddressDTO.class);
     }
 }

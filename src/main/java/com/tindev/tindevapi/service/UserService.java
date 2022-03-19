@@ -26,7 +26,7 @@ public class UserService {
     private ObjectMapper objectMapper;
 
     public UserDTO createUser(UserCreateDTO userToBeCreated) throws Exception {
-        log.info("Chamou criar user");
+        log.info("Calling the Create user method");
         userRepository.getAddressById(userToBeCreated.getAddressId());
         userRepository.getPersoInfoById(userToBeCreated.getPersoInfoId());
         User userToCreate = objectMapper.convertValue(userToBeCreated, User.class);
@@ -34,7 +34,7 @@ public class UserService {
     }
 
     public List<UserDTO> listUser(){
-        log.info("Chamou listar user");
+        log.info("Calling the list user method");
         return userRepository.list().stream()
                 .map(user -> objectMapper.convertValue(user, UserDTO.class))
                 .collect(Collectors.toList());
@@ -43,18 +43,18 @@ public class UserService {
     public UserDTO updateUser(Integer id, UserCreateDTO userUpdated) throws Exception {
         userRepository.getAddressById(userUpdated.getAddressId());
         userRepository.getPersoInfoById(userUpdated.getPersoInfoId());
-        log.info("Chamou atualizar user");
+        log.info("Calling the Update user method");
         User userToUpdate = objectMapper.convertValue(userUpdated, User.class);
         return objectMapper.convertValue(userRepository.update(id, userToUpdate), UserDTO.class);
     }
 
     public void deleteUser(Integer id) throws Exception {
-        log.info("Chamou deletar user");
+        log.info("Calling the Delete user method");
         userRepository.delete(id);
     }
 
     public UserDTO getUserById(Integer id) throws Exception {
-        log.info("Chamou pegar user por id");
+        log.info("Calling the get user by id method");
         return objectMapper.convertValue(userRepository.getUserById(id), UserDTO.class);
     }
 }

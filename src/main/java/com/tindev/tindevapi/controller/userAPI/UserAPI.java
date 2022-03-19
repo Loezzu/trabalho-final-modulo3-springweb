@@ -27,32 +27,32 @@ public interface UserAPI {
             @ApiResponse(code = 500, message = "Foi gerada uma exceção"),})
     ResponseEntity<List<UserDTO>> listUser();
 
-    @ApiOperation(value = "Adiciona um endereço")
+    @ApiOperation(value = "Adiciona um usuário")
     @ApiResponses(value = {
-            @ApiResponse(code = 200, message = "Retorna um endereço com um id"),
+            @ApiResponse(code = 200, message = "Retorna um usuário com um id"),
             @ApiResponse(code = 403, message = "Você não tem permissão para acessar este recurso"),
             @ApiResponse(code = 500, message = "Foi gerada uma exceção"),})
     ResponseEntity<UserDTO> postUser(@Valid @RequestBody UserCreateDTO userCreateDTO) throws Exception;
 
-    @ApiOperation(value = "Atualiza um endereço")
+    @ApiOperation(value = "Atualiza um usuário")
     @ApiResponses(value = {
-            @ApiResponse(code = 200, message = "Retorna um endereço atualizado pelo id"),
+            @ApiResponse(code = 200, message = "Retorna um usuário atualizado pelo id"),
             @ApiResponse(code = 403, message = "Você não tem permissão para acessar este recurso"),
             @ApiResponse(code = 500, message = "Foi gerada uma exceção"),})
     ResponseEntity<UserDTO> updatedUser(@PathVariable("userId") Integer id,
                                         @Valid @RequestBody UserCreateDTO userCreateDTO) throws Exception;
 
 
-    @ApiOperation(value = "Deleta um endereço")
+    @ApiOperation(value = "Deleta um usuário")
     @ApiResponses(value = {
             @ApiResponse(code = 200, message = "Retorna uma mensagem de sucesso"),
             @ApiResponse(code = 403, message = "Você não tem permissão para acessar este recurso"),
             @ApiResponse(code = 500, message = "Foi gerada uma exceção"),})
     ResponseEntity<String> deleteUser(@PathVariable("userId") Integer id) throws Exception;
 
-    @ApiOperation(value = "Retorna um endereço por ID")
+    @ApiOperation(value = "Retorna um usuário por ID")
     @ApiResponses(value = {
-            @ApiResponse(code = 200, message = "Retorna um endereço com ID"),
+            @ApiResponse(code = 200, message = "Retorna um usuário com ID"),
             @ApiResponse(code = 403, message = "Você não tem permissão para acessar este recurso"),
             @ApiResponse(code = 500, message = "Foi gerada uma exceção"),})
     ResponseEntity<UserDTO> getByUserId(@PathVariable("userId") Integer id) throws Exception;

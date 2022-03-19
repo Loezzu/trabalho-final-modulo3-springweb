@@ -54,4 +54,11 @@ public class PersoInfoRepository {
         return persoInfoList.stream()
                 .anyMatch(persoInfo -> persoInfo.getEmail().equals(email));
     }
+
+    public PersoInfo getPersoInfoById(Integer id) throws RegraDeNegocioException {
+        return persoInfoList.stream()
+                .filter(persoInfo -> persoInfo.getIdPersoInfo().equals(id))
+                .findFirst()
+                .orElseThrow(() -> new RegraDeNegocioException("PersoInfo not found"));
+    }
 }

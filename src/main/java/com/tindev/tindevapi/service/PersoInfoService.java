@@ -59,4 +59,8 @@ public class PersoInfoService {
     }
 
 
+    public PersoInfoDTO getPersoInfoById(Integer id) throws RegraDeNegocioException {
+        log.info("Calling get personal info by id method ");
+        return objectMapper.convertValue(persoInfoRepository.getPersoInfoById(id), PersoInfoDTO.class);
+    }
 }

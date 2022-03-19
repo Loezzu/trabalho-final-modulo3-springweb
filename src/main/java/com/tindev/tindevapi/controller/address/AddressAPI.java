@@ -27,32 +27,32 @@ public interface AddressAPI {
             @ApiResponse(code = 500, message = "Foi gerada uma exceção"),})
     ResponseEntity<List<AddressDTO>> listAddress();
 
-    @ApiOperation(value = "Adiciona um usuário")
+    @ApiOperation(value = "Adiciona um endereço")
     @ApiResponses(value = {
-            @ApiResponse(code = 200, message = "Retorna um usuário com um id"),
+            @ApiResponse(code = 200, message = "Retorna um endereço com um id"),
             @ApiResponse(code = 403, message = "Você não tem permissão para acessar este recurso"),
             @ApiResponse(code = 500, message = "Foi gerada uma exceção"),})
     ResponseEntity<AddressDTO> postAddress(@Valid @RequestBody AddressCreateDTO addressCreateDTO);
 
-    @ApiOperation(value = "Atualiza um usuário")
+    @ApiOperation(value = "Atualiza um endereço")
     @ApiResponses(value = {
-            @ApiResponse(code = 200, message = "Retorna um usuário atualizado pelo id"),
+            @ApiResponse(code = 200, message = "Retorna um endereço atualizado pelo id"),
             @ApiResponse(code = 403, message = "Você não tem permissão para acessar este recurso"),
             @ApiResponse(code = 500, message = "Foi gerada uma exceção"),})
     ResponseEntity<AddressDTO> updatedAddress(@PathVariable("addressId") Integer id,
                                               @Valid @RequestBody AddressCreateDTO addressCreateDTO) throws Exception;
 
 
-    @ApiOperation(value = "Deleta um usuário")
+    @ApiOperation(value = "Deleta um endereço")
     @ApiResponses(value = {
             @ApiResponse(code = 200, message = "Retorna uma mensagem de sucesso"),
             @ApiResponse(code = 403, message = "Você não tem permissão para acessar este recurso"),
             @ApiResponse(code = 500, message = "Foi gerada uma exceção"),})
     ResponseEntity<String> deleteAddress(@PathVariable("addressId") Integer id);
 
-    @ApiOperation(value = "Retorna um usuário por ID")
+    @ApiOperation(value = "Retorna um endereço por ID")
     @ApiResponses(value = {
-            @ApiResponse(code = 200, message = "Retorna um usuário com ID"),
+            @ApiResponse(code = 200, message = "Retorna um endereço com ID"),
             @ApiResponse(code = 403, message = "Você não tem permissão para acessar este recurso"),
             @ApiResponse(code = 500, message = "Foi gerada uma exceção"),})
     ResponseEntity<AddressDTO> getByIdAddress(@PathVariable("addressId") Integer id) throws Exception;

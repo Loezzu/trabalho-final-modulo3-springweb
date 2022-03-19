@@ -1,5 +1,6 @@
 package com.tindev.tindevapi.controller.persoinfo;
 
+import com.tindev.tindevapi.dto.address.AddressDTO;
 import com.tindev.tindevapi.dto.persoInfo.PersoInfoCreateDTO;
 import com.tindev.tindevapi.dto.persoInfo.PersoInfoDTO;
 import io.swagger.annotations.*;
@@ -43,4 +44,11 @@ public interface PersoInfoAPI {
             @ApiResponse(code = 403, message = "Você não tem permissão para acessar este recurso"),
             @ApiResponse(code = 500, message = "Foi gerada uma exceção"),})
     ResponseEntity<String> delete(@PathVariable("persoInfoId") Integer id) throws Exception;
+
+    @ApiOperation(value = "Retorna um dado pessoal por ID")
+    @ApiResponses(value = {
+            @ApiResponse(code = 200, message = "Retorna um dado pessoal com ID"),
+            @ApiResponse(code = 403, message = "Você não tem permissão para acessar este recurso"),
+            @ApiResponse(code = 500, message = "Foi gerada uma exceção"),})
+    ResponseEntity<PersoInfoDTO> getByPersoInfoId(@PathVariable("persoInfoId") Integer id) throws Exception;
 }
