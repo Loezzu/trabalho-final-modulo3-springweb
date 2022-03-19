@@ -17,7 +17,7 @@ import java.util.List;
 @RestController
 @RequestMapping("/user")
 @Validated
-@Api(value = "User API", produces = MediaType.APPLICATION_JSON_VALUE, tags = {"User API"}, description = "User Controls")
+@Api(value = "3 - User API", produces = MediaType.APPLICATION_JSON_VALUE, tags = {"3 - User API"}, description = "User Controls")
 public class UserController implements UserAPI{
 
     @Autowired

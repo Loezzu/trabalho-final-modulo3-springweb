@@ -56,4 +56,11 @@ public interface UserAPI {
             @ApiResponse(code = 403, message = "Você não tem permissão para acessar este recurso"),
             @ApiResponse(code = 500, message = "Foi gerada uma exceção"),})
     ResponseEntity<UserDTO> getByUserId(@PathVariable("userId") Integer id) throws Exception;
+
+    @ApiOperation(value = "Lista usuários disponíveis por ID")
+    @ApiResponses(value = {
+            @ApiResponse(code = 200, message = "Retorna uma lista de usuários disponíveis por ID"),
+            @ApiResponse(code = 403, message = "Você não tem permissão para acessar este recurso"),
+            @ApiResponse(code = 500, message = "Foi gerada uma exceção"),})
+    ResponseEntity<List<UserDTO>> listAvailable(@PathVariable("userId") Integer id) throws Exception;
 }

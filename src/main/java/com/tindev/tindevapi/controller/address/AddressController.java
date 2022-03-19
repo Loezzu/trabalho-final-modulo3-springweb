@@ -17,7 +17,7 @@ import java.util.List;
 @RestController
 @RequestMapping("/address")
 @Validated
-@Api(value = "Address API", produces = MediaType.APPLICATION_JSON_VALUE, tags = {"Address API"}, description = "Address Controls")
+@Api(value = "2 - Address API", produces = MediaType.APPLICATION_JSON_VALUE, tags = {"2 - Address API"}, description = "Address Controls")
 public class AddressController implements AddressAPI{
 
     @Autowired
