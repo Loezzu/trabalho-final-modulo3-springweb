@@ -22,7 +22,7 @@ public interface PersoInfoAPI {
             @ApiResponse(code = 500, message = "Foi gerada uma exceção"),})
     ResponseEntity<List<PersoInfoDTO>> list();
 
-    @ApiOperation(value = "Retorna um dado pessoal")
+    @ApiOperation(value = "Adiciona um dado pessoal")
     @ApiResponses(value = {
             @ApiResponse(code = 200, message = "Retorna um dado pessoal com um id"),
             @ApiResponse(code = 403, message = "Você não tem permissão para acessar este recurso"),

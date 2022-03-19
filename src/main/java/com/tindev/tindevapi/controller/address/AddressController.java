@@ -1,7 +1,8 @@
-package com.tindev.tindevapi.controller;
+package com.tindev.tindevapi.controller.address;
 
 import com.tindev.tindevapi.dto.address.AddressCreateDTO;
 import com.tindev.tindevapi.dto.address.AddressDTO;
+import com.tindev.tindevapi.exceptions.RegraDeNegocioException;
 import com.tindev.tindevapi.service.AddressService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -14,7 +15,7 @@ import java.util.List;
 @RestController
 @RequestMapping("/address")
 @Validated
-public class AddressController {
+public class AddressController implements AddressAPI{
 
     @Autowired
     private AddressService addressService;
@@ -25,7 +26,7 @@ public class AddressController {
     }
 
     @GetMapping("/{addressId}")
-    public ResponseEntity<AddressDTO> getByIdAddress(@PathVariable("addressId") Integer id) throws Exception {
+    public ResponseEntity<AddressDTO> getByIdAddress(@PathVariable("addressId") Integer id) throws RegraDeNegocioException {
         return ResponseEntity.ok(addressService.getAddressById(id));
     }
 
@@ -36,7 +37,7 @@ public class AddressController {
 
     @PutMapping("/{addressId}")
     public ResponseEntity<AddressDTO> updatedAddress(@PathVariable("addressId") Integer id,
-                                                    @Valid @RequestBody AddressCreateDTO addressCreateDTO) throws Exception {
+                                                    @Valid @RequestBody AddressCreateDTO addressCreateDTO) throws RegraDeNegocioException {
         return ResponseEntity.ok(addressService.updateAddress(id, addressCreateDTO));
     }
 

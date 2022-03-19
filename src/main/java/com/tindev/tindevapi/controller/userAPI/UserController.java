@@ -1,4 +1,4 @@
-package com.tindev.tindevapi.controller;
+package com.tindev.tindevapi.controller.userAPI;
 
 import com.tindev.tindevapi.dto.user.UserCreateDTO;
 import com.tindev.tindevapi.dto.user.UserDTO;
@@ -15,7 +15,7 @@ import java.util.List;
 @RestController
 @RequestMapping("/user")
 @Validated
-public class UserController {
+public class UserController implements UserAPI{
 
     @Autowired
     private UserService userService;
