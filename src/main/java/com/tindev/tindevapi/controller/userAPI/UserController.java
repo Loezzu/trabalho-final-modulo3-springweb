@@ -4,7 +4,9 @@ import com.tindev.tindevapi.dto.user.UserCreateDTO;
 import com.tindev.tindevapi.dto.user.UserDTO;
 import com.tindev.tindevapi.exceptions.RegraDeNegocioException;
 import com.tindev.tindevapi.service.UserService;
+import io.swagger.annotations.Api;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
@@ -15,6 +17,7 @@ import java.util.List;
 @RestController
 @RequestMapping("/user")
 @Validated
+@Api(value = "User API", produces = MediaType.APPLICATION_JSON_VALUE, tags = {"User API"}, description = "User Controls")
 public class UserController implements UserAPI{
 
     @Autowired

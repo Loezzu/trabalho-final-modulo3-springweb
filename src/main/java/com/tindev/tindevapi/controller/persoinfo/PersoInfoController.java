@@ -6,8 +6,10 @@ import com.tindev.tindevapi.dto.persoInfo.PersoInfoCreateDTO;
 import com.tindev.tindevapi.dto.persoInfo.PersoInfoDTO;
 import com.tindev.tindevapi.exceptions.RegraDeNegocioException;
 import com.tindev.tindevapi.service.PersoInfoService;
+import io.swagger.annotations.Api;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
@@ -18,6 +20,7 @@ import java.util.List;
 @Validated
 @RestController
 @RequestMapping("/persoinfo")
+@Api(value = "PersoInfo API", produces = MediaType.APPLICATION_JSON_VALUE, tags = {"PersoInfo API"}, description = "PersoInfo Controls")
 public class PersoInfoController implements PersoInfoAPI {
 
 

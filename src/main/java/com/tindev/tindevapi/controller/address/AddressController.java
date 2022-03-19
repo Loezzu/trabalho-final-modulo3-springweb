@@ -4,7 +4,9 @@ import com.tindev.tindevapi.dto.address.AddressCreateDTO;
 import com.tindev.tindevapi.dto.address.AddressDTO;
 import com.tindev.tindevapi.exceptions.RegraDeNegocioException;
 import com.tindev.tindevapi.service.AddressService;
+import io.swagger.annotations.Api;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
@@ -15,6 +17,7 @@ import java.util.List;
 @RestController
 @RequestMapping("/address")
 @Validated
+@Api(value = "Address API", produces = MediaType.APPLICATION_JSON_VALUE, tags = {"Address API"}, description = "Address Controls")
 public class AddressController implements AddressAPI{
 
     @Autowired
