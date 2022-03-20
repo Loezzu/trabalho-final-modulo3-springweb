@@ -1,6 +1,5 @@
 package com.tindev.tindevapi.controller.like;
 
-import com.tindev.tindevapi.dto.like.LikeCreateDTO;
 import com.tindev.tindevapi.dto.like.LikeDTO;
 import com.tindev.tindevapi.service.LikeService;
 import io.swagger.annotations.Api;
@@ -13,7 +12,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/like")
-@Api(value = "4 - Like API", produces = MediaType.APPLICATION_JSON_VALUE, tags = {"4 - Like API"}, description = "like Controls")
+@Api(value = "4 - Like API", produces = MediaType.APPLICATION_JSON_VALUE, tags = {"4 - Like API"}, description = "Like Controls")
 public class LikeController {
 
     @Autowired
@@ -24,9 +23,9 @@ public class LikeController {
         return ResponseEntity.ok(likeService.listLikesById(id));
     }
 
-    @PostMapping("/{userId}")
-    public ResponseEntity<LikeDTO> darLike(@RequestBody LikeCreateDTO like, @PathVariable("userId") Integer userId) throws Exception {
-        return ResponseEntity.ok(likeService.darLike(like, userId));
+    @PostMapping("/{userId}/{likedUserId}")
+    public ResponseEntity<LikeDTO> darLike(@PathVariable("userId") Integer userId, @PathVariable("likedUserId") Integer likedUserId) throws Exception {
+        return ResponseEntity.ok(likeService.darLike(userId, likedUserId));
     }
 
     @DeleteMapping("/{likeId}")

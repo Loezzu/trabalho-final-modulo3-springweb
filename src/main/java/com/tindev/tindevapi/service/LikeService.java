@@ -1,7 +1,6 @@
 package com.tindev.tindevapi.service;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.tindev.tindevapi.dto.like.LikeCreateDTO;
 import com.tindev.tindevapi.dto.like.LikeDTO;
 import com.tindev.tindevapi.dto.user.UserDTO;
 import com.tindev.tindevapi.entities.Like;
@@ -10,7 +9,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Optional;
 
 @Service
 public class LikeService {
@@ -36,9 +34,9 @@ public class LikeService {
        return objectMapper.convertValue(likes, objectMapper.getTypeFactory().constructCollectionType(List.class, LikeDTO.class));
     }
 
-    public LikeDTO darLike(LikeCreateDTO likeCreate, Integer id) throws Exception {
-      Like like = objectMapper.convertValue(likeCreate, Like.class);
-      return objectMapper.convertValue(likeRepository.darLike(like, id), LikeDTO.class);
+    public LikeDTO darLike(Integer userId, Integer likedUserId) throws Exception {
+        Like like = likeRepository.darLike(userId, likedUserId);
+        return objectMapper.convertValue(like, LikeDTO.class);
 
     }
 

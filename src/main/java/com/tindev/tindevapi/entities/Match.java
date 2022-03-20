@@ -7,9 +7,9 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 @Data
-public class Like {
+public class Match {
 
-    private Integer likeId;
-    private Integer userId;
-    private Integer likedUserId;
+    private Integer matchId;
+    private Integer matchedUserFirst;
+    private Integer matchedUserSecond;
 }

@@ -31,8 +31,8 @@ public class LikeRepository {
                 .collect(Collectors.toList());
     }
 
-    public Like darLike(Like user, Integer id) throws Exception {
-        Like like = new Like(COUNTER.incrementAndGet(), id, user.getLikedUserId());
+    public Like darLike(Integer userId, Integer likedUserId) throws Exception {
+        Like like = new Like(COUNTER.incrementAndGet(), userId, likedUserId);
         if (like.getUserId().equals(like.getLikedUserId())) {
             throw new RegraDeNegocioException("Não é possível dar like para você mesmo");
         }
@@ -43,9 +43,6 @@ public class LikeRepository {
         return like;
     }
 
-//    public void removerLike(Like like) {
-//        likeList.remove(like);
-//    }
 
     public void removerLike(Integer id) throws Exception {
         Like like = likeList.stream().filter(l -> l.getLikeId().equals(id))
