@@ -29,7 +29,7 @@ public class MatchService {
     }
 
 
-    public MatchDTO addMatch(Integer userid1, Integer userid2) {
+    public MatchDTO addMatch(Integer userid1, Integer userid2) throws Exception {
 
         Match match = matchRepository.addMatch(userid1, userid2);
         return objectMapper.convertValue(match, MatchDTO.class);

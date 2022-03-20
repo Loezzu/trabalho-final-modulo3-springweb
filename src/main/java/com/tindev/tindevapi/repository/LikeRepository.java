@@ -21,10 +21,10 @@ public class LikeRepository {
     @Autowired
     private MatchService matchService;
 
-    public LikeRepository() {
-        likeList.add(new Like(COUNTER.incrementAndGet(), 1, 2));
-        likeList.add(new Like(COUNTER.incrementAndGet(), 1, 3));
-    }
+//    public LikeRepository() {
+//        likeList.add(new Like(COUNTER.incrementAndGet(), 1, 2));
+//        likeList.add(new Like(COUNTER.incrementAndGet(), 1, 3));
+//    }
 
     public List<Like> list() {
         return likeList;

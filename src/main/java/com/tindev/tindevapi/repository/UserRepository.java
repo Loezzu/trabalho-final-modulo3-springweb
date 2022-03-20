@@ -28,7 +28,7 @@ public class UserRepository {
 
 
     public UserRepository(){
-        listUsers.add(new User(COUNTER.incrementAndGet(), 1, 1, "joao", "joao123", ProgLangs.JAVA, Gender.MALE, Pref.BOTH));
+        listUsers.add(new User(COUNTER.incrementAndGet(), 1, 1, "joao", "joao123", ProgLangs.PHP, Gender.MALE, Pref.BOTH));
         listUsers.add(new User(COUNTER.incrementAndGet(), 2, 2, "pedro", "pedro123", ProgLangs.JAVA, Gender.MALE, Pref.BOTH));
         listUsers.add(new User(COUNTER.incrementAndGet(), 3, 3, "lucas", "lucas123", ProgLangs.JAVA, Gender.MALE, Pref.BOTH));
         listUsers.add(new User(COUNTER.incrementAndGet(), 4, 4, "gui", "gui123", ProgLangs.JAVA, Gender.MALE, Pref.BOTH));

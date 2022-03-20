@@ -25,7 +25,7 @@ public class MatchController {
     }
 
     @PostMapping("/{userId1}/{userId2}")
-    public MatchDTO addMatch(@RequestParam("userId1") Integer userId1, @RequestParam("userId2") Integer userId2) {
+    public MatchDTO addMatch(@RequestParam("userId1") Integer userId1, @RequestParam("userId2") Integer userId2) throws Exception {
         return matchService.addMatch(userId1, userId2);
     }
 

@@ -4,6 +4,8 @@ import com.tindev.tindevapi.entities.Like;
 import com.tindev.tindevapi.entities.Match;
 import com.tindev.tindevapi.entities.User;
 import com.tindev.tindevapi.exceptions.RegraDeNegocioException;
+import com.tindev.tindevapi.service.UserService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import java.util.ArrayList;
@@ -15,19 +17,24 @@ public class MatchRepository {
     private static final List<Match> matchList = new ArrayList<>();
     private final AtomicInteger COUNTER = new AtomicInteger();
 
-    public MatchRepository() {
-        matchList.add(new Match(COUNTER.incrementAndGet(), 1, 2));
-    }
+//    public MatchRepository() {
+//        matchList.add(new Match(COUNTER.incrementAndGet(), 1, 2));
+//    }
+
+    @Autowired
+    private UserService userService;
 
     public List<Match> list() {
         return matchList;
     }
 
-    public Match addMatch(Integer matchedUserIdFirst, Integer matchedUserIdSecond) {
-        Match match = new Match(COUNTER.incrementAndGet(), matchedUserIdFirst, matchedUserIdSecond);
-
-        matchList.add(match);
-        return match;
+    public Match addMatch(Integer matchedUserIdFirst, Integer matchedUserIdSecond) throws Exception {
+        if(userService.getUserById(matchedUserIdFirst).getProgLangs().equals(userService.getUserById(matchedUserIdSecond).getProgLangs())){
+            Match match = new Match(COUNTER.incrementAndGet(), matchedUserIdFirst, matchedUserIdSecond);
+            matchList.add(match);
+            return match;
+        }
+        return null;
     }
 
     public void deleteMatch(Integer matchId) throws Exception {
@@ -40,16 +47,4 @@ public class MatchRepository {
 
 
     }
-
-
-//    public void addMatch(User user1, User user2) {
-//        if (user1.getProgLangs().equals(user2.getProgLangs())) {
-//            user1.getMyMatches().add(user2);
-//            user2.getMyMatches().add(user1);
-//            System.out.println("DEU MATCH POIS A LINGUAGEM DE PROGRAMAÇÃO É COMPATÍVEL.");
-//        } else {
-//            System.out.println("INFELIZMENTE NÃO DEU MATCH POIS A LINGUAGEM DE PROGRAMAÇÃO É INCOMPATÍVEL.");
-//        }
-//    }
-
 }
