@@ -6,11 +6,17 @@ import com.tindev.tindevapi.enums.Gender;
 import com.tindev.tindevapi.enums.Pref;
 import com.tindev.tindevapi.enums.ProgLangs;
 import io.swagger.annotations.ApiModelProperty;
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
+import java.util.ArrayList;
+import java.util.List;
 
+@AllArgsConstructor
+@NoArgsConstructor
 @Data
 public class UserCreateDTO{
 
@@ -43,4 +49,5 @@ public class UserCreateDTO{
     @ApiModelProperty(value = "The user's preference", example = "WOMEN", required = true)
     @NotNull
     private Pref pref;
+
 }

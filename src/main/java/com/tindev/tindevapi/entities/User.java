@@ -24,7 +24,6 @@ public class User {
     private Gender gender;
     private Pref pref;
 
-    private final List<User> myLikes = new ArrayList<>();
-    private final List<User> myMatches = new ArrayList<>();
+
 
 }

@@ -1,15 +1,14 @@
 package com.tindev.tindevapi.controller.like;
 
+import com.tindev.tindevapi.dto.like.LikeCreateDTO;
+import com.tindev.tindevapi.dto.like.LikeDTO;
 import com.tindev.tindevapi.dto.user.UserDTO;
 import com.tindev.tindevapi.service.LikeService;
 import io.swagger.annotations.Api;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -22,8 +21,18 @@ public class LikeController {
     private LikeService likeService;
 
     @GetMapping("/{userId}")
-    public ResponseEntity<List<UserDTO>> listLike(@PathVariable("userId")Integer id) throws Exception {
-        return ResponseEntity.ok(likeService.listLikes(id));
+    public ResponseEntity<List<LikeDTO>> listLike(@PathVariable("userId")Integer id) throws Exception {
+        return ResponseEntity.ok(likeService.listLikesById(id));
     }
+
+    @PostMapping("/{userId}/{likedId}")
+    public ResponseEntity<LikeDTO> darLike(@PathVariable("userId") Integer idUser, @PathVariable("likedId") Integer likedId) throws Exception {
+        return ResponseEntity.ok(likeService.darLike(idUser, likedId));
+    }
+
+//    @PostMapping("/{userId}/{likedId}")
+//    public ResponseEntity<UserDTO> like(@PathVariable("userId")Integer id, @PathVariable("likedId")Integer likedId) throws Exception {
+//        return ResponseEntity.ok(likeService.like(id, likedId));
+//    }
 
 }
