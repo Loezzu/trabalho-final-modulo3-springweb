@@ -25,6 +25,7 @@ public class MatchRepository {
 
     public Match addMatch(Integer matchedUserIdFirst, Integer matchedUserIdSecond) {
         Match match = new Match(COUNTER.incrementAndGet(), matchedUserIdFirst, matchedUserIdSecond);
+
         matchList.add(match);
         return match;
     }

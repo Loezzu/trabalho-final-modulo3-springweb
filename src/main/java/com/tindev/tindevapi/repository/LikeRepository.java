@@ -3,6 +3,8 @@ package com.tindev.tindevapi.repository;
 import com.tindev.tindevapi.dto.user.UserDTO;
 import com.tindev.tindevapi.entities.Like;
 import com.tindev.tindevapi.exceptions.RegraDeNegocioException;
+import com.tindev.tindevapi.service.MatchService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import java.util.ArrayList;
@@ -15,6 +17,9 @@ public class LikeRepository {
 
     private static final List<Like> likeList = new ArrayList<>();
     private final AtomicInteger COUNTER = new AtomicInteger();
+
+    @Autowired
+    private MatchService matchService;
 
     public LikeRepository() {
         likeList.add(new Like(COUNTER.incrementAndGet(), 1, 2));
@@ -38,7 +43,7 @@ public class LikeRepository {
         }
         likeList.add(like);
         if(likeList.stream().map(Like::getUserId).toList().contains(like.getLikedUserId()) && likeList.stream().map(Like::getLikedUserId).toList().contains(like.getUserId())){
-            System.out.println("Trocaram likes");
+            matchService.addMatch(userId, likedUserId);
         }
         return like;
     }
