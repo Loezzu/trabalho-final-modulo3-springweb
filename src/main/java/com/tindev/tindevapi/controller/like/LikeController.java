@@ -18,8 +18,13 @@ public class LikeController {
     @Autowired
     private LikeService likeService;
 
+    @GetMapping
+    public ResponseEntity<List<LikeDTO>> listLikes() throws Exception {
+        return ResponseEntity.ok(likeService.listAllLikes());
+    }
+
     @GetMapping("/{userId}")
-    public ResponseEntity<List<LikeDTO>> listLike(@PathVariable("userId")Integer id) throws Exception {
+    public ResponseEntity<List<LikeDTO>> listLikeOfTheUser(@PathVariable("userId")Integer id) throws Exception {
         return ResponseEntity.ok(likeService.listLikesById(id));
     }
 

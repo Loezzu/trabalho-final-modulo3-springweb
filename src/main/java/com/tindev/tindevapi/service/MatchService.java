@@ -28,6 +28,10 @@ public class MatchService {
                 .collect(Collectors.toList());
     }
 
+    public List<MatchDTO> listMatchesOfTheUser(Integer idUser){
+        return matchRepository.listMatchesOfUser(idUser).stream()
+                .map(match -> objectMapper.convertValue(match, MatchDTO.class)).collect(Collectors.toList());
+    }
 
     public MatchDTO addMatch(Integer userid1, Integer userid2) throws Exception {
 

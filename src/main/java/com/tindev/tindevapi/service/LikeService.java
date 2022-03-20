@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class LikeService {
@@ -22,12 +23,13 @@ public class LikeService {
     @Autowired
     private ObjectMapper objectMapper;
 
+    public List<LikeDTO> listAllLikes(){
+        return likeRepository.list().stream().map(like -> objectMapper.convertValue(like, LikeDTO.class)).collect(Collectors.toList());
+    }
 
     public List<LikeDTO> listLikesById(Integer id) throws Exception {
 
        UserDTO user = userService.getUserById(id);
-
-//       User userEntity = objectMapper.convertValue(user, User.class);
 
        List<Like> likes = likeRepository.listLikesByUserId(user);
 
@@ -46,7 +48,7 @@ public class LikeService {
     }
 
     public void deleteLikeByUserId(Integer id) throws Exception {
-       likeRepository.getUserLike(id);
+        likeRepository.getUserLike(id);
         likeRepository.removeAllLikesByUserId(id);
     }
 

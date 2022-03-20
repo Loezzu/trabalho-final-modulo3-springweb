@@ -4,6 +4,7 @@ import com.tindev.tindevapi.dto.user.UserDTO;
 import com.tindev.tindevapi.entities.Like;
 import com.tindev.tindevapi.exceptions.RegraDeNegocioException;
 import com.tindev.tindevapi.service.MatchService;
+import com.tindev.tindevapi.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
@@ -21,11 +22,6 @@ public class LikeRepository {
     @Autowired
     private MatchService matchService;
 
-//    public LikeRepository() {
-//        likeList.add(new Like(COUNTER.incrementAndGet(), 1, 2));
-//        likeList.add(new Like(COUNTER.incrementAndGet(), 1, 3));
-//    }
-
     public List<Like> list() {
         return likeList;
     }
@@ -37,6 +33,11 @@ public class LikeRepository {
     }
 
     public Like darLike(Integer userId, Integer likedUserId) throws Exception {
+        for (Like likes : likeList){
+            if(likes.getUserId().equals(userId) && likes.getLikedUserId().equals(likedUserId)){
+                throw new RegraDeNegocioException("Você ja deu like nessa pessoa");
+            }
+        }
         Like like = new Like(COUNTER.incrementAndGet(), userId, likedUserId);
         if (like.getUserId().equals(like.getLikedUserId())) {
             throw new RegraDeNegocioException("Não é possível dar like para você mesmo");
