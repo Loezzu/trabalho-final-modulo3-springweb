@@ -5,6 +5,6 @@ import lombok.Data;
 @Data
 public class LikeCreateDTO {
 
-
+    private Integer likedUserId;
 
 }

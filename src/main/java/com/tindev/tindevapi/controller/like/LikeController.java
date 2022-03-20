@@ -25,9 +25,9 @@ public class LikeController {
         return ResponseEntity.ok(likeService.listLikesById(id));
     }
 
-    @PostMapping("/{userId}/{likedId}")
-    public ResponseEntity<LikeDTO> darLike(@PathVariable("userId") Integer idUser, @PathVariable("likedId") Integer likedId) throws Exception {
-        return ResponseEntity.ok(likeService.darLike(idUser, likedId));
+    @PutMapping("/{userId}")
+    public ResponseEntity<LikeDTO> darLike(@RequestBody LikeCreateDTO like, @PathVariable("userId") Integer userId) throws Exception {
+        return ResponseEntity.ok(likeService.darLike(like, userId));
     }
 
 //    @PostMapping("/{userId}/{likedId}")

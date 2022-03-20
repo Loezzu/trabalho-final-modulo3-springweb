@@ -36,24 +36,9 @@ public class LikeService {
        return objectMapper.convertValue(likes, objectMapper.getTypeFactory().constructCollectionType(List.class, LikeDTO.class));
     }
 
-    public LikeDTO darLike(Integer user1, Integer user2) throws Exception {
-
-       Like like23 = likeRepository.getUserId(user1);
-       Like like24 = likeRepository.getUserIdLiked(user2);
-
-
-       Like like = objectMapper.convertValue(like23, Like.class);
-       Like like2 = objectMapper.convertValue(like24, Like.class);
-
-
-
-        Like likeFeito = likeRepository.darLike(like, like2);
-
-
-
-        LikeDTO likeDTO = objectMapper.convertValue(likeFeito, LikeDTO.class);
-
-        return likeDTO;
+    public LikeDTO darLike(LikeCreateDTO likeCreate, Integer id) throws Exception {
+      Like like = objectMapper.convertValue(likeCreate, Like.class);
+      return objectMapper.convertValue(likeRepository.darLike(like, id), LikeDTO.class);
 
     }
 
