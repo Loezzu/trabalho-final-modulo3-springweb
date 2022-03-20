@@ -2,7 +2,6 @@ package com.tindev.tindevapi.controller.like;
 
 import com.tindev.tindevapi.dto.like.LikeCreateDTO;
 import com.tindev.tindevapi.dto.like.LikeDTO;
-import com.tindev.tindevapi.dto.user.UserDTO;
 import com.tindev.tindevapi.service.LikeService;
 import io.swagger.annotations.Api;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,14 +24,22 @@ public class LikeController {
         return ResponseEntity.ok(likeService.listLikesById(id));
     }
 
-    @PutMapping("/{userId}")
+    @PostMapping("/{userId}")
     public ResponseEntity<LikeDTO> darLike(@RequestBody LikeCreateDTO like, @PathVariable("userId") Integer userId) throws Exception {
         return ResponseEntity.ok(likeService.darLike(like, userId));
     }
 
-//    @PostMapping("/{userId}/{likedId}")
-//    public ResponseEntity<UserDTO> like(@PathVariable("userId")Integer id, @PathVariable("likedId")Integer likedId) throws Exception {
-//        return ResponseEntity.ok(likeService.like(id, likedId));
-//    }
+    @DeleteMapping("/{likeId}")
+    public ResponseEntity<String> deleteLike(@PathVariable("likeId") Integer likeId) throws Exception {
+        likeService.deleteLike(likeId);
+        return ResponseEntity.ok("Like deleted");
+    }
+
+    @DeleteMapping("/user/{userId}")
+    public ResponseEntity<String> deleteLikeByUser(@PathVariable("userId") Integer userId) throws Exception {
+        likeService.deleteLikeByUserId(userId);
+        return ResponseEntity.ok("Like deleted");
+    }
+
 
 }

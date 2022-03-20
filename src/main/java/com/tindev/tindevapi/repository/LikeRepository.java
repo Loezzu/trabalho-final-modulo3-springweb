@@ -2,12 +2,7 @@ package com.tindev.tindevapi.repository;
 
 import com.tindev.tindevapi.dto.user.UserDTO;
 import com.tindev.tindevapi.entities.Like;
-import com.tindev.tindevapi.entities.User;
 import com.tindev.tindevapi.exceptions.RegraDeNegocioException;
-import com.tindev.tindevapi.service.PersoInfoService;
-import com.tindev.tindevapi.service.UserService;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.lang.UsesSunMisc;
 import org.springframework.stereotype.Repository;
 
 import java.util.ArrayList;
@@ -31,7 +26,6 @@ public class LikeRepository {
     }
 
     public List<Like> listLikesByUserId(UserDTO user) {
-
         return likeList.stream()
                 .filter(like -> like.getUserId().equals(user.getUserId()))
                 .collect(Collectors.toList());
@@ -43,7 +37,32 @@ public class LikeRepository {
             throw new RegraDeNegocioException("Não é possível dar like para você mesmo");
         }
         likeList.add(like);
+        if(likeList.stream().map(Like::getUserId).toList().contains(like.getLikedUserId()) && likeList.stream().map(Like::getLikedUserId).toList().contains(like.getUserId())){
+            System.out.println("Trocaram likes");
+        }
         return like;
+    }
+
+//    public void removerLike(Like like) {
+//        likeList.remove(like);
+//    }
+
+    public void removerLike(Integer id) throws Exception {
+        Like like = likeList.stream().filter(l -> l.getLikeId().equals(id))
+                .findFirst()
+                .orElseThrow(() -> new RegraDeNegocioException("Like não encontrado"));
+        likeList.remove(like);
+    }
+
+    public void removeAllLikesByUserId(Integer id) {
+        likeList.removeIf(like -> like.getUserId().equals(id));
+    }
+
+    public Like getUserLike(Integer id) throws Exception {
+        return likeList.stream()
+                .filter(like -> like.getUserId().equals(id))
+                .findFirst()
+                .orElseThrow(() -> new RegraDeNegocioException("Like não encontrado"));
     }
 
 }
