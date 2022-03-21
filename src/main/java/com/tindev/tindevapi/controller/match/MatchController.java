@@ -13,7 +13,7 @@ import java.util.List;
 @RestController
 @RequestMapping("/match")
 @Api(value = "5 - Match API", produces = MediaType.APPLICATION_JSON_VALUE, tags = {"5 - Match API"}, description = "Match Controls")
-public class MatchController {
+public class MatchController implements MatchAPI {
 
 
     @Autowired

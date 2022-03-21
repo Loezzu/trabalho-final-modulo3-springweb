@@ -1,8 +1,6 @@
 package com.tindev.tindevapi.repository;
 
-import com.tindev.tindevapi.entities.Like;
 import com.tindev.tindevapi.entities.Match;
-import com.tindev.tindevapi.entities.User;
 import com.tindev.tindevapi.exceptions.RegraDeNegocioException;
 import com.tindev.tindevapi.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;

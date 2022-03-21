@@ -4,7 +4,6 @@ import com.tindev.tindevapi.dto.user.UserDTO;
 import com.tindev.tindevapi.entities.Like;
 import com.tindev.tindevapi.exceptions.RegraDeNegocioException;
 import com.tindev.tindevapi.service.MatchService;
-import com.tindev.tindevapi.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 

@@ -13,7 +13,7 @@ import java.util.List;
 @RestController
 @RequestMapping("/like")
 @Api(value = "4 - Like API", produces = MediaType.APPLICATION_JSON_VALUE, tags = {"4 - Like API"}, description = "Like Controls")
-public class LikeController {
+public class LikeController implements LikeAPI{
 
     @Autowired
     private LikeService likeService;
