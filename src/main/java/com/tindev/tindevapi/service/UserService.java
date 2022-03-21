@@ -58,6 +58,16 @@ public class UserService {
         return objectMapper.convertValue(userRepository.getUserById(id), UserDTO.class);
     }
 
+    public String getUsernameById(Integer id) throws Exception {
+        log.info("Calling the get username by id method");
+        return userRepository.getUsernameById(id);
+    }
+
+    public String getEmailById(Integer id) throws Exception {
+        log.info("Calling the get email by id method");
+        return userRepository.getEmailById(id);
+    }
+
     public List<UserDTO> listAvailable(Integer id) throws Exception {
         log.info("Calling the list available method");
         return userRepository.listAvailable(id).stream()

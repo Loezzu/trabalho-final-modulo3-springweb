@@ -1,5 +1,7 @@
 package com.tindev.tindevapi.repository;
 
+import com.tindev.tindevapi.dto.persoInfo.PersoInfoDTO;
+import com.tindev.tindevapi.entities.PersoInfo;
 import com.tindev.tindevapi.entities.User;
 import com.tindev.tindevapi.enums.Gender;
 import com.tindev.tindevapi.enums.Pref;
@@ -84,11 +86,20 @@ public class UserRepository {
                 .orElseThrow(() -> new RegraDeNegocioException("Address not found"));
     }
 
-    public void getPersoInfoById(Integer id) throws Exception {
-        persoInfoService.list().stream()
+    public PersoInfoDTO getPersoInfoById(Integer id) throws Exception {
+        return persoInfoService.list().stream()
                 .filter(persoInfo -> persoInfo.getIdPersoInfo().equals(id))
                 .findFirst()
                 .orElseThrow(() -> new RegraDeNegocioException("Personal information not found"));
+
+    }
+
+    public String getUsernameById(Integer id) throws Exception {
+        return getUserById(id).getUsername();
+    }
+
+    public String getEmailById(Integer id) throws Exception {
+       return getPersoInfoById(getUserById(id).getPersoInfoId()).getEmail();
     }
 
     public List<User> listAvailable(Integer id) throws Exception {
